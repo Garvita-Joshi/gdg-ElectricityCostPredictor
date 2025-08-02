@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Electricity Cost Prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; }
+        .container {
+            width: 400px; margin: 50px auto; padding: 20px;
+            background: white; border-radius: 10px; box-shadow: 0 0 10px gray;
+        }
+        h2 { text-align: center; color: #333; }
+        form { display: flex; flex-direction: column; }
+        label { margin: 10px 0 5px; }
+        input, select {
+            padding: 8px; border-radius: 5px; border: 1px solid #ccc;
+        }
+        button {
+            margin-top: 15px; padding: 10px;
+            background: #007bff; color: white; border: none;
+            border-radius: 5px; cursor: pointer;
+        }
+        button:hover { background: #0056b3; }
+        .result { margin-top: 20px; font-weight: bold; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Electricity Cost Prediction</h2>
+        <form action="/predict" method="post">
+            <label>Site Area:</label>
+            <input type="number" step="0.01" name="site_area" required>
+
+            <label>Structure Type:</label>
+            <select name="structure_type" required>
+                <option value="Mixed-use">Mixed-use</option>
+                <option value="Residential">Residential</option>
+                <option value="Commercial">Commercial</option>
+            </select>
+
+            <label>Water Consumption:</label>
+            <input type="number" step="0.01" name="water_consumption" required>
+
+            <label>Recycling Rate:</label>
+            <input type="number" step="0.01" name="recycling_rate" required>
+
+            <label>Utilisation Rate:</label>
+            <input type="number" step="0.01" name="utilisation_rate" required>
+
+            <label>Air Qality Index:</label>
+            <input type="number" step="0.01" name="air_qality_index" required>
+
+            <label>Issue Reolution Time:</label>
+            <input type="number" step="0.01" name="issue_reolution_time" required>
+
+            <label>Resident Count:</label>
+            <input type="number" step="1" name="resident_count" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            {{ prediction }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
